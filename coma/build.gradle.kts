@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "plznoanr.coma.core"
+    namespace = "plznoanr.coma"
     compileSdk = Config.compileSdkVersion
 
     defaultConfig {
