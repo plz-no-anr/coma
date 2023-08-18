@@ -1,5 +1,5 @@
 rootProject.name = "coma"
-include(":app", ":coma-core")
+include(":app", ":coma")
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
