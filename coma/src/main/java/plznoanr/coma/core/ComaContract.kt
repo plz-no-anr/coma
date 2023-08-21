@@ -1,6 +1,6 @@
 package plznoanr.coma.core
 
-abstract class Contract {
+abstract class ComaContract {
 
     interface State
 

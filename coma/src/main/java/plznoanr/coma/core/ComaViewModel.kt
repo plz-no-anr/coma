@@ -12,11 +12,11 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-abstract class ComaViewModel<UiState : Contract.State, in Intent : Contract.Intent, SideEffect : Contract.SideEffect>
+abstract class ComaViewModel<UiState : ComaContract.State, in Intent : ComaContract.Intent, SideEffect : ComaContract.SideEffect>
     : ViewModel() {
     abstract fun setInitialState(): UiState
 
-    abstract fun handleIntents(intent: Intent)
+    protected abstract fun handleIntents(intent: Intent)
 
     private val initialState: UiState by lazy { setInitialState() }
 
@@ -46,7 +46,7 @@ abstract class ComaViewModel<UiState : Contract.State, in Intent : Contract.Inte
         }
     }
 
-    fun ViewModel.postIntent(intent: Intent) {
+    fun postIntent(intent: Intent) {
         viewModelScope.launch(exceptionHandler) { _intent.emit(intent) }
     }
 
