@@ -92,7 +92,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    viewModel.state.value.name?.let { UserNameView(it) } // set UI
+                   val state by viewModel.state.collectAsState()
+                   state.value.name?.let { UserNameView(it) } // set UI
 
                     Button(onClick = { viewModel.postIntent(MainContract.Intent.ShowName("")) }) {
                         Text(text = "Show Name")
