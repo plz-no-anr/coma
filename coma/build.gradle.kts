@@ -35,10 +35,8 @@ android {
 }
 
 dependencies {
-    implementation(AndroidX.coreKtx)
-    implementation(AndroidX.appCompat)
     api(AndroidX.lifecycleViewModel)
-    api(AndroidX.Compose.runtime)
+    api(JetBrains.coroutine)
     implementation(ThirdParty.timber)
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

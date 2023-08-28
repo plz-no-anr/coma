@@ -1,13 +1,12 @@
 package plznoanr.coma.core
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -20,8 +19,8 @@ abstract class ComaViewModel<UiState : ComaContract.State, in Intent : ComaContr
 
     private val initialState: UiState by lazy { setInitialState() }
 
-    private val _state: MutableState<UiState> = mutableStateOf(initialState)
-    val state: State<UiState> = _state
+    private val _state: MutableStateFlow<UiState> = MutableStateFlow(initialState)
+    val state: StateFlow<UiState> = _state
 
     private val _intent: MutableSharedFlow<Intent> = MutableSharedFlow()
 
