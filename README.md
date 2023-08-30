@@ -88,6 +88,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComaTheme {
+                LaunchedEffect(Unit) { // SideEffect Collect
+                    viewModel.sideEffect.onEach { sideEffect ->
+                        when (sideEffect) {
+                            is MainContract.SideEffect.ShowError -> {
+                                 ...
+                            }
+                           
+                        }
+                    }.collect()
+                }
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
