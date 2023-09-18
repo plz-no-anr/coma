@@ -88,11 +88,23 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComaTheme {
+                LaunchedEffect(Unit) { // SideEffect Collect
+                    viewModel.sideEffect.onEach { sideEffect ->
+                        when (sideEffect) {
+                            is MainContract.SideEffect.ShowError -> {
+                                 ...
+                            }
+                           
+                        }
+                    }.collect()
+                }
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    viewModel.state.value.name?.let { UserNameView(it) } // set UI
+                   val state by viewModel.state.collectAsState()
+                   state.value.name?.let { UserNameView(it) } // set UI
 
                     Button(onClick = { viewModel.postIntent(MainContract.Intent.ShowName("")) }) {
                         Text(text = "Show Name")
