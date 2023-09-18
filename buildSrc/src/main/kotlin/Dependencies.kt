@@ -22,40 +22,14 @@ inline val PluginDependenciesSpec.kotlinAndroid: PluginDependencySpec
 inline val PluginDependenciesSpec.kotlinSerialization: PluginDependencySpec
     get() = kotlin("plugin.serialization")
 
-// multi module
-inline val DependencyHandlerScope.shared get() = project(":shared")
-inline val DependencyHandlerScope.database get() = project(":database")
-inline val DependencyHandlerScope.model get() = project(":model")
-
 object AndroidX {
     const val coreKtx = "androidx.core:core-ktx:$coreKtxVersion"
     const val appCompat = "androidx.appcompat:appcompat:$appCompatVersion"
-    const val constraintlayout = "androidx.constraintlayout:constraintlayout:$constraintlayoutVersion"
-    const val multidex = "androidx.multidex:multidex:$multiDexVersion"
-    const val workManager = "androidx.work:work-runtime:$workManagerVersion"
-    const val legacySupport = "androidx.legacy:legacy-support-v4:1.0.0"
-    const val biometric = "androidx.biometric:biometric:$biometricVersion"
-    const val splashScreen = "androidx.core:core-splashscreen:$splashScreenVersion"
-    const val window = "androidx.window:window:$windowVersion"
 
     // lifecycle
     const val lifecycleLiveData = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
-
-    // navigation
-    const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:$navVersion"
-    const val navigationUi = "androidx.navigation:navigation-ui-ktx:$navVersion"
-    const val navigationDynamicFeatures = "androidx.navigation:navigation-dynamic-features-fragment:$navVersion"
-    const val navigationTesting = "androidx.navigation:navigation-testing:$navVersion"
-
-    const val room = "androidx.room:room-runtime:$roomVersion"
-    const val roomCompiler = "androidx.room:room-compiler:$roomVersion"
-    const val roomKtx = "androidx.room:room-ktx:$roomVersion"
-    const val roomTest = "androidx.room:room-testing:$roomVersion"
-
-    const val dataStore = "androidx.datastore:datastore-preferences:$dataStoreVersion"
-    const val dataStoreCore = "androidx.datastore:datastore-preferences-core:$dataStoreVersion"
 
     object Compose {
         const val bom = "androidx.compose:compose-bom:$composeVersion"
@@ -99,22 +73,6 @@ object AndroidX {
 
 }
 
-object Google {
-
-
-    // firebase
-    const val firebaseBom = "com.google.firebase:firebase-bom:$firebaseVersion"
-    const val firebaseAnalytics = "com.google.firebase:firebase-analytics"
-    const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics"
-    const val firebaseDynamicLinks = "com.google.firebase:firebase-dynamic-links"
-    const val firebaseCore = "com.google.firebase:firebase-core"
-    const val firebaseAuth = "com.google.firebase:firebase-auth"
-    const val firebaseMessaging = "com.google.firebase:firebase-messaging"
-
-    const val flexbox = "com.google.android.flexbox:flexbox:3.0.0"
-    const val material = "com.google.android.material:material:$materialVersion"
-}
-
 object JetBrains {
     const val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
     const val coroutineTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutineVersion"
@@ -131,52 +89,13 @@ object Squareup {
 
 object ThirdParty {
 
-    // glide
-    const val glide = "com.github.bumptech.glide:glide:$glideVersion"
-    const val glideCompiler = "com.github.bumptech.glide:compiler:$glideVersion"
-    const val glideOkHttp = "com.github.bumptech.glide:okhttp3-integration:$glideVersion"
-
-    const val facebookLogin = "com.facebook.android:facebook-login:$facebookVersion"
-
-    const val zxingCore = "com.google.zxing:core:$zxingCoreVersion"
-    const val zxingAndroid = "com.journeyapps:zxing-android-embedded:$zxingAndroidEmbeddedVersion"
-
-    object WalletConnect {
-        const val v1 = "com.github.salomonbrys.kotson:kotson:2.5.0"
-
-        const val v2Bom = "com.walletconnect:android-bom:$walletConnectV2BomVersion"
-        const val v2AndroidCore = "com.walletconnect:android-core"
-        const val v2Web3Wallet = "com.walletconnect:web3wallet"
-    }
-
     object Kotest {
         const val runner = "io.kotest:kotest-runner-junit5:$kotestVersion"
         const val assertions = "io.kotest:kotest-assertions-core:$kotestVersion"
         const val property = "io.kotest:kotest-property:$kotestVersion"
     }
 
-    const val retrofitConverterSerialization = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$kotlinXSerializationConverter"
-
-    const val lottie = "com.airbnb.android:lottie:$lottieVersion"
-
-    const val mpChart = "com.github.PhilJay:MPAndroidChart:v3.1.0"
-
-    // jackson
-    const val jacksonCore = "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
-    const val jacksonDatabind = "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
-    const val jacksonAnnotations = "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion"
-
-    // Compose
-    const val cardStack = "com.github.omercemcicekli:CardStack:0.0.6"
-    const val coil = "io.coil-kt:coil-compose:$coilVersion"
-    const val composeLottie = "com.airbnb.android:lottie-compose:$composeLottieVersion"
-
-    const val dotIndicator = "com.tbuonomo:dotsindicator:4.2"
-
     const val timber = "com.jakewharton.timber:timber:$timberVersion"
-
-    const val facebookShimmer = "com.facebook.shimmer:shimmer:0.5.0"
-    const val photoView = "com.github.chrisbanes:PhotoView:2.1.3"
 
     const val mockk = "io.mockk:mockk:$mockkVersion"
 }
@@ -195,39 +114,6 @@ fun DependencyHandlerScope.coroutines() {
     impl(JetBrains.coroutine)
     test(JetBrains.coroutineTest)
 }
-
-fun DependencyHandlerScope.room() {
-    impl(AndroidX.room)
-    impl(AndroidX.roomKtx)
-    kapt(AndroidX.roomCompiler)
-    androidTest(AndroidX.roomTest)
-}
-
-fun DependencyHandlerScope.retrofit() {
-    impl(Squareup.retrofit)
-    impl(Squareup.retrofitConverterGson)
-}
-
-fun DependencyHandlerScope.okhttp() {
-    impl(Squareup.okHttp)
-    impl(Squareup.okHttpInterceptor)
-    impl(Squareup.okHttpUrlConnection)
-}
-
-fun DependencyHandlerScope.navigation() {
-    impl(AndroidX.navigationFragment)
-    impl(AndroidX.navigationUi)
-    impl(AndroidX.navigationDynamicFeatures)
-    androidTest(AndroidX.navigationTesting)
-//    implementation "androidx.navigation:navigation-compose:$nav_version"
-}
-
-fun DependencyHandlerScope.dataStore() {
-    impl(AndroidX.dataStore)
-    impl(AndroidX.dataStoreCore)
-}
-
-
 
 fun DependencyHandlerScope.androidXTest() {
 // AndroidX Test
@@ -278,11 +164,6 @@ fun DependencyHandlerScope.compose() {
     impl(AndroidX.Compose.hiltNavigation)
 }
 
-fun DependencyHandlerScope.composeThirdParty() {
-    impl(ThirdParty.cardStack)
-    impl(ThirdParty.coil)
-    impl(ThirdParty.composeLottie)
-}
 
 fun DependencyHandlerScope.kotest() {
     forDependecies(
