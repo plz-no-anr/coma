@@ -1,5 +1,10 @@
-rootProject.name = "coma"
-include(":app", ":coma")
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -9,3 +14,5 @@ dependencyResolutionManagement {
         mavenLocal()
     }
 }
+rootProject.name = "coma"
+include(":app", ":coma")

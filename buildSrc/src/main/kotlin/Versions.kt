@@ -1,6 +1,7 @@
 // Plugin
-const val gradleVersion = "8.1.0"
+const val agpVersion = "8.1.1"
 const val kotlinVersion = "1.8.21"
+const val nexusPublishVersion = "1.3.0"
 
 // AndroidX
 const val appCompatVersion = "1.6.1"

@@ -17,18 +17,10 @@ inline val PluginDependenciesSpec.androidApplication: PluginDependencySpec
     get() = id("com.android.application")
 inline val PluginDependenciesSpec.androidLibrary: PluginDependencySpec
     get() = id("com.android.library")
-inline val PluginDependenciesSpec.firebaseCrashlytics: PluginDependencySpec
-    get() = id("com.google.firebase.crashlytics")
 inline val PluginDependenciesSpec.kotlinAndroid: PluginDependencySpec
     get() = kotlin("android")
-inline val PluginDependenciesSpec.hiltAndroid: PluginDependencySpec
-    get() = id("dagger.hilt.android.plugin")
-inline val PluginDependenciesSpec.navigationSafeargs: PluginDependencySpec
-    get() = id("androidx.navigation.safeargs")
 inline val PluginDependenciesSpec.kotlinSerialization: PluginDependencySpec
     get() = kotlin("plugin.serialization")
-inline val PluginDependenciesSpec.nexusPublish: PluginDependencySpec
-    get() = id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
 
 // multi module
 inline val DependencyHandlerScope.shared get() = project(":shared")
