@@ -1,8 +1,6 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
-    id("com.android.application") version agpVersion apply false
-    kotlin("android") version kotlinVersion apply false
     kotlin("plugin.serialization") version kotlinVersion apply false
     id("io.github.gradle-nexus.publish-plugin") version nexusPublishVersion
 }
