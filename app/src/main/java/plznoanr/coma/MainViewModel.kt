@@ -2,12 +2,12 @@ package plznoanr.coma
 
 import plznoanr.coma.core.ComaViewModel
 
-class MainViewModel: ComaViewModel<MainContract.State, MainContract.Intent, MainContract.SideEffect>() {
-    override fun setInitialState(): MainContract.State = MainContract.State()
+class MainViewModel: ComaViewModel<UiState, Intent, SideEffect>() {
+    override fun setInitialState(): UiState = UiState()
 
-    override fun handleIntents(intent: MainContract.Intent) = when (intent) {
-        is MainContract.Intent.ShowName -> showName(intent.name)
-        else -> {}
+    override fun handleIntents(intent: Intent) = when (intent) {
+        is Intent.ShowName -> showName(intent.name)
+        else -> postSideEffect { SideEffect.ShowError }
     }
 
     private fun showName(name: String) {

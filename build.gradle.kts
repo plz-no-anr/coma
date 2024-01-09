@@ -1,14 +1,7 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
-    kotlin("plugin.serialization") version kotlinVersion apply false
     id("io.github.gradle-nexus.publish-plugin") version nexusPublishVersion
-}
-
-tasks {
-    register("clean", Delete::class) {
-        delete(rootProject.buildDir)
-    }
 }
 
 val properties = gradleLocalProperties(rootDir)
@@ -28,5 +21,11 @@ nexusPublishing {
             nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
             snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
         }
+    }
+}
+
+tasks {
+    register("clean", Delete::class) {
+        delete(rootProject.buildDir)
     }
 }

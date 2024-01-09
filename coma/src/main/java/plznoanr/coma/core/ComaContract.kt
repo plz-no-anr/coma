@@ -1,11 +1,7 @@
 package plznoanr.coma.core
 
-abstract class ComaContract {
+interface ComaState
 
-    interface State
+interface ComaIntent
 
-    interface Intent
-
-    interface SideEffect
-
-}
+interface ComaSideEffect

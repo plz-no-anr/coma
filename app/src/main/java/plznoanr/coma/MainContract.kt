@@ -1,24 +1,22 @@
 package plznoanr.coma
 
-import plznoanr.coma.core.ComaContract
+import plznoanr.coma.core.ComaIntent
+import plznoanr.coma.core.ComaSideEffect
+import plznoanr.coma.core.ComaState
 
+data class UiState(
+    val isLoading: Boolean = false,
+    val name: String? = null,
+) : ComaState
 
-class MainContract {
-    data class State(
-        val isLoading: Boolean = false,
-        val name: String? = null,
-    ) : ComaContract.State
+interface Intent : ComaIntent {
 
-    interface Intent : ComaContract.Intent {
+    data class ShowName(val name: String) : Intent
 
-        data class ShowName(val name: String) : Intent
+}
 
-    }
+interface SideEffect : ComaSideEffect {
 
-    interface SideEffect : ComaContract.SideEffect {
-
-        object ShowError : SideEffect
-
-    }
+    object ShowError : SideEffect
 
 }
