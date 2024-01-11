@@ -9,14 +9,8 @@ data class UiState(
     val name: String? = null,
 ) : ComaState
 
-interface Intent : ComaIntent {
+interface Intent : ComaIntent
+data class OnButtonClicked(val name: String) : Intent
 
-    data class ShowName(val name: String) : Intent
-
-}
-
-interface SideEffect : ComaSideEffect {
-
-    object ShowError : SideEffect
-
-}
+interface SideEffect : ComaSideEffect
+object ShowError : SideEffect

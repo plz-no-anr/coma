@@ -3,7 +3,10 @@ package plznoanr.coma
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -14,6 +17,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.flow.onEach
 import plznoanr.coma.ui.theme.ComaTheme
 
@@ -30,8 +34,8 @@ class MainActivity : ComponentActivity() {
                 LaunchedEffect(Unit) {
                     viewModel.sideEffect.onEach {
                         when (it) {
-                            is SideEffect.ShowError -> {
-
+                            is ShowError -> {
+                                // Show error Snackbar
                             }
                         }
                     }
@@ -43,11 +47,19 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val state by viewModel.state.collectAsState()
-                    state.name?.let { Greeting(it) }
+                    val onIntent: (Intent) -> Unit = { viewModel.postIntent(it) }
 
-                    Button(onClick = { viewModel.postIntent(Intent.ShowName("")) }) {
-                        Text(text = "Show Name")
+                    Column {
+                        state.name?.let { Greeting(it) }
+
+                        Spacer(modifier = Modifier.size(20.dp))
+                        Button(
+                            modifier = Modifier.size(200.dp),
+                            onClick = { onIntent(OnButtonClicked("Steve")) }) {
+                            Text(text = "Show Name")
+                        }
                     }
+
 
                 }
             }
